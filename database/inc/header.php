@@ -25,8 +25,18 @@ endif;
         <h1>Media Library</h1>
         <nav>
             <ul>
-                <li><a href="home.php">Home</a></li>
-                <li><a href="index.php">Login</a></li>
+              <?php
+                if (isset($_SESSION['user'])) :
+                ?>
+                    <li><a href="home.php">Home</a></li>
+                    <li><a href="logout.php">Home</a></li>
+                <?php
+                else:
+                ?>
+                    <li><a href="index.php">Login</a></li>
+                <?php
+                endif;
+                ?>
             </ul>
         </nav>
     </header>

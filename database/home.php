@@ -1,5 +1,11 @@
 <?php
-require_once __DIR__ . '/inc/header.php'
+session_start();
+
+if (!isset($_SESSION['user'])) {
+  header('Location: index.php');
+  exit;
+}
+require_once __DIR__ . '/inc/header.php';
 ?>
 <section>
     <form action="insertData.php" method="post" enctype="multipart/form-data">
