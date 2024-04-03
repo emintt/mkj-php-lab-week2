@@ -20,3 +20,13 @@ if (isset($_GET['success'])):
 <?php
 endif;
 ?>
+<div class="container">
+    <header>
+        <h1>Media Library</h1>
+        <nav>
+            <ul>
+                <li><a href="home.php">Home</a></li>
+                <li><a href="index.php">Login</a></li>
+            </ul>
+        </nav>
+    </header>
