@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       $STH->execute($data);
       header('Location: index.php?success=Item modified');
     } catch (PDOException $e){
-      echo "Could not modify data into the database.";
+      echo "Could not modify data in the database.";
       file_put_contents('PDOErrors.txt', 'modifyData.php - ' . $e->getMessage(), FILE_APPEND);
     }
   }
