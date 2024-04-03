@@ -85,7 +85,7 @@ if(isset($_GET['id'])) {
     $STH = $DBH->prepare($sql);
     $STH->execute($data);
     $DBH->commit();
-    header('Location: index.php?success=Item deleted');
+    header('Location: home.php?success=Item deleted');
   } catch (PDOException $e) {
     echo "Could not delete data from the database.";
     file_put_contents('PDOErrors.txt', 'deleteData.php - ' . $e->getMessage(), FILE_APPEND);
@@ -93,5 +93,5 @@ if(isset($_GET['id'])) {
     exit;
   }
 } else {
-  header('Location: index.php?success=No hacking allowed.');
+  header('Location: home.php?success=No hacking allowed.');
 }
