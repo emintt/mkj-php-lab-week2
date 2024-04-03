@@ -3,10 +3,17 @@ global $DBH;
 require 'dbConnect.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  if (isset($_POST['title']) && isset($_POST['description'])) {
+  // name attribute on form
+  if (isset($_POST['title']) && isset($_POST['description']) && $_FILES['file'] !== null) {
+    $filename = $_FILES['file']['name'];
+    $filetype = $_FILES['file']['type'];
+    $filesize = $_FILES['file']['size'];
+    $temp_file = $_FILES['file']['tmp_file'];
+
     $data = [
       'user_id' => 1,
-      'filename' => 'https://placekitten.com/640',
+//      'filename' => 'https://placekitten.com/640',
+      'filename' => $filename,
       'media_type' => 'image/jpeg',
       'title' => $_POST['title'],
       'description' => $_POST['description'],

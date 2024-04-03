@@ -1,3 +1,14 @@
+<!--Assignment 3
+Create a form that has the following fields:
+Username
+Remember me (checkbox)
+Submit button
+When the form is submitted, check if the "Remember me" checkbox is checked.
+    If it is, create a session variable that stores the username. If it is not, delete the session variable.
+When the page is loaded, check if the session variable is set.
+    If it is, fill in the username field with the value from the session variable.
+Use the same file for the form and the script.
+-->
 <?php
 session_start();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

@@ -2,9 +2,10 @@
 
 // dbconfig.php
 
-$host = 'localhost';
-$dbname = 'MesiaSharingApp';
+$host = '127.0.0.1';
+$dbname = 'MediaSharingApp';
 //$username = 'mediashare';
 //$password = '1234';
 $username = 'root';
-  $password = 'fikgas3';
+$password = '';
+$port = 3307;

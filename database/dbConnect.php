@@ -5,7 +5,7 @@ global $host, $dbname, $username, $password;
 
 require 'dbconfig.php';
 
-$dsn = "mysql:host=$host;dbname=$dbname;charset=utf8";
+$dsn = "mysql:host=$host;dbname=$dbname;port=3307;charset=utf8";
 
 try {
   $DBH = new PDO($dsn, $username, $password);
