@@ -1,12 +1,21 @@
 <?php
+// tarkistaa onko user is already logged in
+session_start();
+if (!isset($_SESSION['user'])) {
+  header('Location: index.php');
+  exit;
+}
+
 global $DBH;
 require_once 'dbConnect.php';
 
 if(isset($_GET['id'])) {
   $DBH->beginTransaction();
   $data = [
-    'media_id' => $_GET['id']
+    'media_id' => $_GET['id'],
   ];
+  $data['user_id'] = $_SESSION['user']['user_id'];
+
   // delete file from server
   $sql = 'SELECT filename FROM MediaItems WHERE media_id = :media_id';
   try {
@@ -85,7 +94,11 @@ if(isset($_GET['id'])) {
     $STH = $DBH->prepare($sql);
     $STH->execute($data);
     $DBH->commit();
-    header('Location: home.php?success=Item deleted');
+    if ($STH->rowCount() > 0) {
+      header('Location: home.php?success=Item deleted');
+    } else {
+      header('Location: home.php?success=Not your item');
+    }
   } catch (PDOException $e) {
     echo "Could not delete data from the database.";
     file_put_contents('PDOErrors.txt', 'deleteData.php - ' . $e->getMessage(), FILE_APPEND);

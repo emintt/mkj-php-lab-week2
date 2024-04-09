@@ -8,6 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       'title' => $_POST['title'],
       'description' => $_POST['description'],
       'media_id' => $_POST['media_id'],
+      'user_id' => $_SESSION['user']['user_id'],
     ];
 
     $sql = 'UPDATE MediaItems SET title = :title, description = :description WHERE media_id = :media_id';
@@ -15,7 +16,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
       $STH = $DBH->prepare($sql);
       $STH->execute($data);
-      header('Location: home.php?success=Item modified');
+      if ($STH->rowCount() === 0) {
+        header('Location: home.php?success=Item not modified');
+        exit;
+      } else {
+        header('Location: home.php?success=Item modified');
+      }
     } catch (PDOException $e){
       echo "Could not modify data in the database.";
       file_put_contents('PDOErrors.txt', 'modifyData.php - ' . $e->getMessage(), FILE_APPEND);

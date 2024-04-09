@@ -1,4 +1,11 @@
 <?php
+// tarkistaa onko user is already logged in
+session_start();
+if (!isset($_SESSION['user'])) {
+  header('Location: index.php');
+  exit;
+}
+
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 global $DBH;
@@ -17,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     $data = [
-      'user_id' => 1,
+      'user_id' => $_SESSION['user']['user_id'],
       'filename' => $filename,
       'media_type' => $filetype,
       'title' => $_POST['title'],

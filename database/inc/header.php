@@ -12,6 +12,15 @@
 <body>
 <?php
 if (isset($_GET['success'])):
+  ?>
+    <aside>
+        <p><?php echo $_GET['success']; ?></p>
+    </aside>
+<?php
+endif;
+?>
+<?php
+if (isset($_GET['success'])):
 ?>
 <dialog id="success-modal">
   <p><a href="#" class="close-modal">Close</a></p>
