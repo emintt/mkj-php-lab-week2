@@ -14,10 +14,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       'user_id' => 1,
 //      'filename' => 'https://placekitten.com/640',
       'filename' => $filename,
-      'media_type' => 'image/jpeg',
+      'media_type' => $filetype,
       'title' => $_POST['title'],
       'description' => $_POST['description'],
-      'filesize' => 1234,
+      'filesize' => $filesize,
     ];
 
     $sql = 'INSERT INTO MediaItems (user_id, filename, filesize, media_type, title, description) 
@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       // statement handle
       $STH = $DBH->prepare($sql);
       $STH->execute($data);
-      header('Location: index.php');
+      header('Location: index.php?success=Item added');
     } catch (PDOException $e) {
       echo "Could not select data from the database." . $e->getMessage();
       file_put_contents('PDOErrors.txt', 'selectData.php - ' . $e->getMessage(), FILE_APPEND);

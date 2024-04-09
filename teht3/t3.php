@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <label for="username">Username</label>
   <input <?php
     if (isset($_SESSION['username'])) {
-      echo 'value=' . $_SESSION['username'] . '"';
+      echo 'value="' . $_SESSION['username'] . '"';
     }
 
   ?> type="text" name="username" id="username" />
